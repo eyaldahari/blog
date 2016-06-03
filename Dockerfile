@@ -1,5 +1,5 @@
 FROM gliderlabs/alpine:latest
-MAINTAINER Alexei Ledenev <alexei.led@gmail.com>
+MAINTAINER Eyal Dahari <eyal.dahari@gmail.com>
 
 ENV HUGO_VERSION=0.15
 RUN apk add --update wget ca-certificates && \
