@@ -1,5 +1,5 @@
 
-Currently, there is no official installation for Spark 1.6.X and Scala 2.11.X
+Currently, there is no official installation for Spark 1.6.X and Scala 2.11.X  
 Moreover, if you want to install a Spark cluster on #Amazon EC2 manually it may take you a while
 not to mention the overhead of starting stopping and generally managing the cluster.
 
