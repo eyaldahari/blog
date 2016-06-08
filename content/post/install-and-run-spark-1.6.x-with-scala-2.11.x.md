@@ -1,4 +1,4 @@
-# How to install Apache Spark 1.6.X with Scala 2.11.X in a few simple steps
+# How to install Apache Spark 1.6.X with Scala 2.11.X in no time
 
 At the time this lines are written, there is no official installation for Spark 1.6.X and Scala 2.11.X.  
 In this post I'll explain in few simple steps how to do so.
