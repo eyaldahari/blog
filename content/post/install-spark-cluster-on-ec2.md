@@ -9,7 +9,7 @@ This is not a simple job, right?
 
 For this reason (and many more) Apache Spark package is bundled with an automation scripts for EC2 to make our lives easier.
 
-Lest start!
+Lets start!
 
 The following instructions and all relevant details about parameters etc. are taken from: http://spark.apache.org/docs/latest/ec2-scripts.html 
 
