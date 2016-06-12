@@ -109,6 +109,7 @@ http://<your amazon instance ip/name>:9200/_cluster/health
 ```
 
 Hope that helps :)
+
 Follow me on:
 
 [Twitter](https://twitter.com/EyalDahari) | [Linkedin](https://twitter.com/EyalDahari) | [Stackoverflow](http://stackexchange.com/users/7651751/e-dahari?tab=activity) | [GitHub](https://github.com/eyaldahari)
