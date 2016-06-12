@@ -1,19 +1,28 @@
-Set nodes discovery for Elasticsearch cluster on Amazon EC2 Elasticsearch cluster is built from multiple nodes. Usually each node is located on a different machine. When a node is loaded in the cluster it reads it’s configuration and tries to discover the other nodes. Elasticsearch comes with a default nodes discovery protocol called Zen Discovery. 
+# Elasticsearch nodes discovery on Amazon EC2
 
-There are more specialized discovery plugins for Elasticsearch cluster which runs on different cloud providers like Microsoft Azure, Google Compute Engine and Amazon EC2.
+Elasticsearch cluster is built from multiple nodes. Usually each node is located on a different machine. 
+When a node is loaded in the cluster it reads it’s configuration and tries to discover the other nodes.
+Elasticsearch comes with a default nodes discovery protocol called [Zen Discovery](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery-zen.html).
 
-Here I am going to explain on how to use Amazon EC2 discovery plugin.
+There are more specialized discovery plugins for Elasticsearch cluster which runs on different cloud providers 
+like [Microsoft Azure](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery-azure.html), [Google Compute Engine](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery-gce.html) and [Amazon EC2](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery-ec2.html).
 
-Prerequisites: Install Elasticsearch on each node on the cluster
-Install AWS cloud plugin:
+Here I am going to explain on how to use [Amazon EC2](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery-ec2.html) discovery plugin.
 
-Make sure that you have an internet connection open
-Run the following command to install the plugin:
+## Prerequisites:
+1. Install Elasticsearch on each node on the cluster
+2. Install AWS cloud plugin:
+   * Make sure that you have an internet connection open
+   * Run the following command to install the plugin:    
 
+```bash
 sudo bin/plugin install cloud-aws
+```    
 
-Node Configuration Configure the relevant settings in elasticsearch.yaml. Here are some basic settings to start with:
+## Node Configuration
+Configure the relevant settings in elasticsearch.yaml. Here are some basic settings to start with:
 
+```yaml
 cluster.name: <your-cluster-name>
 node.name: ${HOSTNAME}
 bootstrap.mlockall: true
@@ -36,19 +45,22 @@ region: us-west-2
 
 discovery:
           type: ec2
+```
 
-You may refer here for more configuration options.
+You may refer [here](https://www.elastic.co/guide/en/elasticsearch/plugins/2.3/cloud-aws-discovery.html) for more configuration options.
 
-EC2 permissions EC2 discovery requires making a call to the EC2 service. Setup an IAM policy to allow this. You can create a custom policy via the IAM Management Console. If you are logged in to your Amazon account, the following link should take you to the policies page (pay attention that you are on the correct region. the link I use work on us-west-2) on which you’ll need to select create your own policy like in the image below. 
+## EC2 permissions
+EC2 discovery requires making a call to the EC2 service. Setup an IAM policy to allow this.
+You can create a custom policy via the IAM Management Console. 
+If you are logged in to your Amazon account, the following [link](https://console.aws.amazon.com/iam/home?region=us-west-2#policies) should take you to the policies page 
+on which you'll need to select _"create your own policy"_ like in the image below. 
+Pay attention that you are on the correct region. The link I use works on us-west-2.
 
+![Amazon policy page](/static/img/amazon-policy.png)
 
+Give the policy a name and paste the following block in the _"Policy Document"_ field
 
-
-
-
-
-Give the policy a name and paste the following block in the Policy Document field
-
+```json
 {
   "Statement": [
     {
@@ -63,13 +75,16 @@ Give the policy a name and paste the following block in the Policy Document fiel
   ],
   "Version": "2012-10-17"
 }
+```
 
-Click on “Create Policy”.
+Click on _"Create Policy"_
 
-Start Elasticsearch cluster and verify nodes Now you are ready to start all the  nodes in the EC2 cluster.
+## Start Elasticsearch cluster and verify nodes
+Now you are ready to start all the nodes in the EC2 cluster.
+In order to validate that the nodes are discoverable, run the query below in your browser.
+You should see the number of nodes at the *"number_of_nodes"* json response field.
 
-In order to validate that the nodes are discoverable, run the query below in your browser. You should see the number of nodes at the “number_of_nodes” json response field.
-
+```bash
 #request:
 http://<your amazon instance ip/name>:9200/_cluster/health
 
@@ -91,7 +106,9 @@ http://<your amazon instance ip/name>:9200/_cluster/health
    "task_max_waiting_in_queue_millis": 0,
    "active_shards_percent_as_number": 100
 }
+```
 
-Hope that helps :)
+Hope that helps :)
+Follow me on:
 
-Follow me on Twitter | Linkedin | Stackoverflow | GitHub
+[Twitter](https://twitter.com/EyalDahari) | [Linkedin](https://twitter.com/EyalDahari) | [Stackoverflow](http://stackexchange.com/users/7651751/e-dahari?tab=activity) | [GitHub](https://github.com/eyaldahari)
