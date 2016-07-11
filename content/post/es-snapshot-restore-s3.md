@@ -3,7 +3,7 @@
 Elasticsearch snapshot and restore API's allows to create snapshots of individual indices or an entire cluster into a remote repository. 
 The API's allows to take a snapshot and save it to many repository types like file system, shared UNC paths, Amazon S3 (and other cloud providers), HDFS and etc.
 
-In this post I will breafly explain how to take a cluster snapshot running on one machine and restore it on another. I will focus on how to 
+In this post I will briefly explain how to take a cluster snapshot running on one machine and restore it on another. I will focus on how to 
 take a snapshot specifically on Amazon EC2 instance using Amazon S3 as a repository and restore it on another Amazon EC2 instance.
 
 I deliberately keep it as simple as possible and if you wish to have more advanced options, you can always refer to Elasticsearch documentation 
