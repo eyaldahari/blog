@@ -112,4 +112,8 @@ Hope that helps :)
 
 Follow me on:
 
-[Twitter](https://twitter.com/EyalDahari) | [Linkedin](https://twitter.com/EyalDahari) | [Stackoverflow](http://stackexchange.com/users/7651751/e-dahari?tab=activity) | [GitHub](https://github.com/eyaldahari)
+Follow me on:
+
+Follow me on:
+
+[Medium](https://medium.com/@eyaldahari) | [Twitter](https://twitter.com/EyalDahari) | [Linkedin](https://www.linkedin.com/in/eyaldahari) | [Stackoverflow](http://stackexchange.com/users/7651751/e-dahari?tab=activity) | [GitHub](https://github.com/eyaldahari)
