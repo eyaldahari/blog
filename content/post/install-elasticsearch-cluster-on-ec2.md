@@ -108,11 +108,7 @@ http://<your amazon instance ip/name>:9200/_cluster/health
 }
 ```
 
-Hope that helps :)
-
-Follow me on:
-
-Follow me on:
+Hope that this post helps :)
 
 Follow me on:
 
