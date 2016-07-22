@@ -7,7 +7,7 @@ can't add new analyzers or make changes to existing fields' mappings. For instan
 searches would no longer work as expected.
 
 How to solve this problem? Reindex!  
-Elasticsearch 2.3 was realeased with a new Reindex API which I am going to cover here in this post.
+Elasticsearch 2.3 was released with a new Reindex API which I am going to cover here in this post.
 
 In order to illustrate re-indexing, throughout this post I'll use an Elasticsearch index named _library_ and _books_ as Elasticsearch type.
 
