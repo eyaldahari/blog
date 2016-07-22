@@ -1,4 +1,4 @@
-# Reindexing data in Elasticsearch
+# Reindexing documents in Elasticsearch
 
 It is very easy to start working with Elasticsearch.
 The fact that Elasticsearch do not require a schema upfront indexing your data is an advantage.
