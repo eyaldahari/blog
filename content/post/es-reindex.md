@@ -219,7 +219,7 @@ curl -XPOST 'http://localhost:9200/_reindex' -d '
     failures – information about documents that failed to be reindexed, none in our case,  
     created – number of created documents, which is 18 in our case.   
 
-Please note that there are a lot more settings you can apply on the re-indexing API and control many more configurations as well as re-indexing according to the reslut of a query, wait for it to finish, get re-indexing stats and etc.
+Please note that there are a lot more settings you can apply on the re-indexing API and control many more configurations as well as re-indexing according to the result of a query, wait for it to finish, get re-indexing stats and etc.
 
 All this information may be found at [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html) and a great [Sematext blog](https://sematext.com/blog/2016/03/21/reindexing-data-with-elasticsearch/) I used.
 
