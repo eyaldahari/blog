@@ -6,10 +6,10 @@ However, this sometimes comes with a price. Although you can add new types to an
 can't add new analyzers or make changes to existing fields' mappings. For instance, if a field was mapped as a `string` you can't change its type to `long` after data was indexed. If you were to do so, the data that had already been indexed would be incorrect and your
 searches would no longer work as expected.
 
-How to solve this problem? Reindex!
+How to solve this problem? Reindex!  
 Elasticsearch 2.3 was realeased with a new Reindex API which I am going to cover here in this post.
 
-In order to illustrate re-indexing, throughout this post I'll use an Elasticsearch index named '_library_' and '_books_' as Elasticsearch type.
+In order to illustrate re-indexing, throughout this post I'll use an Elasticsearch index named _library_ and _books_ as Elasticsearch type.
 
 Now lets look for example at the following _book_ document:
 
@@ -17,7 +17,7 @@ Now lets look for example at the following _book_ document:
 curl -XPUT 'http://localhost:9200/library/books/1' -d '
 {
     "title": "Crime and Punishment",
-    "price": "9"
+    "price": 9
 }'
 ```
 
@@ -129,15 +129,13 @@ There are situations where you have to reindex. To name a few:
 - Add more complicated mappings to types
 - There are more..
 
-This means creating a new index, add new settings, apply it with new mappings and all needed functionality.
-
 The simplest way to apply these changes to your existing data is to
 reindex:  create a new index with the new settings and copy all of your
 documents from the old index to the new index.
 
 One of the advantages of the `_source` field is that you already have the
 whole document available to you in Elasticsearch itself. You don't have to
-rebuild your index from the database, which is usually much slower.
+rebuild your index from the database, which is usually much slower. Elasticsearch uses that for re-indexing
 
 #Start Reindexing
 - Create a new index named _new_library_ and add all relevant settings
@@ -194,7 +192,7 @@ curl -XPOST 'http://localhost:9200/_reindex' -d '
     "index": "new_library",
     "version_type": "external"
   }
-}
+}'
 
 #Result 
 {
@@ -213,17 +211,17 @@ curl -XPOST 'http://localhost:9200/_reindex' -d '
 
 - As you can see, we need to specify the source index (using the source section), the destination index (using the desc section) and send the command to the _reindex REST end-point. We’ve also specified the version_type and set it to external to preserve document versions. 
 - The result shows I have reindexed 2 documents, the two where created since they did not exists in the _new_library_ before.
-- We can also see a few useful statistics about the re-indexing process:
-    took – the amount of the the re-indexing operation took,
-    updated – number of documents updated,
-    batches – number of batches used,
-    version_conflicts – how many documents were conflicting,
-    failures – information about documents that failed to be reindexed, none in our case,
-    created – number of created documents, which is 18 in our case.
+- We can also see a few useful statistics about the re-indexing process:  
+    took – the amount of the the re-indexing operation took,  
+    updated – number of documents updated,  
+    batches – number of batches used,  
+    version_conflicts – how many documents were conflicting,  
+    failures – information about documents that failed to be reindexed, none in our case,  
+    created – number of created documents, which is 18 in our case.   
 
-Please note that there are a lot more settings you can apply on the re-indexing API and controll many more configurations as well as re-indexing according to the reslut of a query wait for it to finish and get stats and etc.
+Please note that there are a lot more settings you can apply on the re-indexing API and control many more configurations as well as re-indexing according to the reslut of a query, wait for it to finish, get re-indexing stats and etc.
 
-All this information may be found at [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html) and a blog I used [here](https://sematext.com/blog/2016/03/21/reindexing-data-with-elasticsearch/).
+All this information may be found at [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html) and a great [Sematext blog](https://sematext.com/blog/2016/03/21/reindexing-data-with-elasticsearch/) I used.
 
 
 Hope that it helps! :)
