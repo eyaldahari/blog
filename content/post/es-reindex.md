@@ -7,23 +7,25 @@ can't add new analyzers or make changes to existing fields' mappings. For instan
 to `long` after data was indexed. If you were to do so, the data that had already been indexed would be incorrect and your
 searches would no longer work as expected.
 
-Let's look at some examples.
-To illustrate reindexing, throughout this post I'll use _library_ as Elasticsearch index and _books_ as Elasticsearch type.
+How to solve this problem? Reindex!
+Since 2.3 Elasticsearch comes with a new Reindex API whihc I am going to cover here in this post.
 
-Now lets take for example the following _book_ document:
+In order to illustrate reindexing, throughout this post I'll use an Elasticsearch index named '_library_' and '_books_' as Elasticsearch type.
+
+Now lets take for example at the following _book_ document:
 
 ```sh
 curl -XPUT 'http://localhost:9200/library/books/1' -d '
 {
     "title": "Crime and Punishment",
-    "price": 9
+    "price": "9"
 }'
 ```
 
 Indexing the document above would automatically create the following mappings in Elasticsearch:
 
 ```sh
-# Get mapping:
+# Get mappings:
 curl -XGET 'http://localhost:9200/library/books/_mapping'
 
 # Returns:
@@ -45,7 +47,7 @@ curl -XGET 'http://localhost:9200/library/books/_mapping'
 }
 ```
 
-Now, say for instance that I want to have the _price_ of the _book_ as a _string_ and not _long_.
+Now, say for example that I want to have the _price_ of the _book_ as a _string_ and not _long_.
 This is not possible after I have indexed my _"Crime and Punishment"_.
 
 Lets try and see what happens:
